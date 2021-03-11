@@ -25,7 +25,7 @@ This project was developed using the following technologies:
 - SQL
 
 
-## License 📝 
+## 📝 License  
 
 This project is under a MIT license. Click <a  href="https://github.com/gustavodev1998/QuintWeb/blob/main/LICENSE"> here </a> to know more
 
