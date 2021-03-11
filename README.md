@@ -25,6 +25,7 @@ This project was developed using the following technologies:
 
 - SQL
 
+<br>
 
 ## License 📝 
 
