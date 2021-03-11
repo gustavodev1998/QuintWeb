@@ -1,0 +1,68 @@
+ 
+ALGEBRA RELACIONAL
+6-
+
+a)
+π nomecliente, email, telemovel, morada 
+σ tipocliente = 'individual' 
+and idcliente = 100005 cliente
+
+b)
+π nomecliente, designaproduto σ p.designaproduto = 'Batatas'
+ and e.dataencomenda > date('2019-01-01')
+ and e.dataencomenda < date('2019-12-01') 
+and c.idcliente = e.idcliente 
+( ( ( ρ c cliente ⨯ ρ p produto ) 
+⨝ d.idproduto = p.idproduto ρ d detalheencomenda ) 
+⨝ d.idencomenda = e.idencomenda ρ e encomenda ) 
+- 
+( π nomecliente, designaproduto 
+σ e.dataencomenda ≥ date('2020-01-01') 
+and p.designaproduto = 'Batatas' 
+and c.idcliente = e.idcliente 
+( ( ( ρ c cliente ⨯ ρ p produto )
+ ⨝ d.idproduto = p.idproduto ρ d detalheencomenda )
+ ⨝ d.idencomenda = e.idencomenda ρ e encomenda ) )
+c)
+τ t.maior desc π t.designaproduto, t.maior ρ t 
+( π p.designaproduto, maior γ p.designaproduto;
+ SUM(quantidade)→maior 
+( ( ρ p produto ⨝ d.idproduto = p.idproduto 
+ρ d detalheencomenda ) ⨝ d.idencomenda = e.idencomenda
+ ρ e encomenda ) )
+d)
+ π nomecliente, c.morada σ p.estado = 'divida' 
+and p.datalimite < date('2020-12-31') 
+( ( ρ c cliente ⨝ e.idcliente = c.idcliente ρ e encomenda )
+ ⨝ p.idencomenda = e.idencomenda ρ p pagamento )
+
+nota: não dá para fazer a data atual ( current_date)
+
+e)
+τ t.numEnc desc π t.designaproduto, t.media, t.numEnc ρ t 
+( π p.designaproduto, media, numEnc γ p.designaproduto; 
+AVG(quantidade)→media, COUNT(quantidade)→numEnc 
+σ d.idproduto = p.idproduto 
+( ( ρ p produto ⨯ ρ d detalheencomenda )
+ ⨝ d.idencomenda = e.idencomenda ρ e encomenda ) )
+
+nota: não dá para fazer o FETCH FIRST 1 ROWS only;
+
+
+f)
+τ nomelote asc π nomecliente, nomelote, numMoradas, 
+designaproduto γ c.nomecliente, l.nomelote, 
+p.designaproduto; COUNT(l.nomelote)→numMoradas 
+σ p.tipoproduto = 'agricola' and d.quantidade ≥ 10 
+and l.datamaturacao < e.dataencomenda 
+and e.idcliente = c.idcliente 
+and l.idproduto = d.idproduto 
+( ( ( ( ρ c cliente ⨯ ρ l lote ) ⨯ ρ p produto )
+ ⨝ d.idproduto = p.idproduto ρ d detalheencomenda ) 
+⨝ d.idencomenda = e.idencomenda ρ e encomenda )
+
+
+
+
+
+

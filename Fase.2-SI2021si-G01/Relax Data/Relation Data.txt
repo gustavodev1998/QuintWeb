@@ -1,0 +1,62 @@
+group: UIBK - encomenda, detalheEncomenda, produto, cliente, pagamento
+
+encomenda = {
+idencomenda:number, dataencomenda:date ,idcliente:number , morada:string, tipoencomenda:string
+
+1, 2020-11-15, 47576,'Lisboa','Enc_Individual'
+2, 2019-11-16, 47587, 'Luanda','Enc_Empresarial'
+3, 2019-11-17, 47594, 'Berlim','Enc_Individual'
+4, 2019-01-15, 100005, 'Setubal','Enc_Individual'
+5, 2020-07-18, 100005, 'Setubal','Enc_Individual'
+6, 2019-11-20, 47576, 'Porto', 'Enc_Individual'
+}
+
+detalheencomenda = {
+idencomenda:number, idproduto:number, quantidade:number
+
+1,100,5
+1,150,10
+2,200,12
+2,50,3
+3,100,20
+4,150,25
+5,50,20
+6,150,11
+}
+
+produto = {
+idproduto:number, custounidade:number, designaproduto:string, quantidadedisponivel:number, tipoproduto:string, peso:string, datanascimento:date
+
+100, 1.99, '12xOvos', 10, 'derivado', null, null
+50, 4.99,'Frango', 6, 'pecuario','1kg/unidade',2020-09-09
+200, 0.99,'Feijao verde', 10, 'agricola', '1kg/unidade', null
+150, 2.14,'Batatas', 30, 'agricola', '1kg/unidade', null
+}
+-- Quantidade vem em Quilos
+-- Ovos em Caixas
+
+cliente = {
+idcliente:number, nifcliente:number, nomecliente:string, morada:string, pais:string, email:string, telemovel:number, tipocliente:string
+
+47576,123456789,'Gustavo','Lisboa','Portugal','A47576@alunos.isel.pt',926065477,'individual'
+47587,987654321,'Leonor','Luanda','Angola','A47588@alunos.isel.pt',920000000,'empresa'
+47594,246813579,'Tiago','Berlim','Alemanha','A47599@alunos.isel.pt',926044444,'individual'
+100005,765842901,'Jaquim','Setubal','Portugal','ficticio@gmail.com',921111111,'individual'
+
+}
+pagamento = {
+idencomenda:number,estado:string,datalimite:date
+	 1,'divida',2020-11-20
+	 2,'liquidado',2020-11-21
+	 3,'liquidado',2020-11-22
+	 4,'liquidado',2019-01-20
+	 5,'divida',2021-07-23
+	 6,'liquidado',2021-11-19
+}
+
+lote = {
+idproduto:number,nomelote:string,datamaturacao:date,quantidadeprevista:string,arealote:string 
+	 150,'Lote1',2019-01-10,'10kg/unidades','1000m2'
+	 150,'Lote2',2020-11-10,'20kg/unidades','2000m2'
+	 200,'Lote3',2020-11-01,'10kg/unidades','1000m2'
+}
